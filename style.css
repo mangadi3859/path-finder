@@ -1,0 +1,91 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    font-family: Arial;
+}
+
+:root {
+    --start-clr: rgb(0 255 0 / 0.4);
+    --path-clr: rgb(0 255 0 / 0.15);
+    --current-clr: rgb(255 255 0 / 0.15);
+    --visited-clr: rgba(210, 154, 0, 0.15);
+    --visited-path-clr: rgba(0, 98, 210, 0.15);
+    --destination-clr: rgb(252 0 0 / 0.4);
+    --wall-clr: rgb(0 0 0 / 0.75);
+}
+
+body {
+    background-color: #eee;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#map {
+    display: grid;
+    /* padding: 1em; */
+    border: 1em solid black;
+    /* width: 75%; */
+    height: 100vh;
+    aspect-ratio: 1 / 1;
+    grid-template-columns: repeat(var(--size), 1fr);
+    grid-template-rows: repeat(var(--size), 1fr);
+    place-items: center;
+}
+
+.map-container {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    gap: 1rem;
+    padding: 2rem;
+}
+
+.cell {
+    border-radius: 15%;
+    border: 1px solid rgb(0 0 0 / 0.4);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    user-select: none;
+}
+
+.cell[data-start] {
+    background-color: var(--start-clr);
+}
+
+.cell[data-destination] {
+    /* background-color: rgb(200 200 0 / 0.4); */
+    background-color: var(--destination-clr);
+}
+
+.cell[data-cell-type="current"] {
+    background-color: var(--current-clr);
+}
+
+.cell[data-cell-type="visited"],
+.cell[data-cell-type="visitedPath"] {
+    background-color: var(--visited-clr);
+}
+
+/* .cell[data-cell-type="visitedPath"] {
+    background-color: var(--visited-path-clr);
+} */
+
+.cell[data-cell-type="wall"] {
+    background-color: var(--wall-clr);
+}
+
+.cell[data-cell-type="path"] {
+    background-color: var(--path-clr);
+}
